@@ -9,7 +9,7 @@ def exit_program():
 
 
 # Restaurant functions
-def list_restaurants():
+def list_restaurants():  # Lists all restaurants in the database
     restaurants = Restaurant.get_all()
     if not restaurants:
         print("No restaurants found.")
@@ -18,19 +18,19 @@ def list_restaurants():
             print(restaurant)
 
 
-def find_restaurant_by_name():
+def find_restaurant_by_name():                      #Finds a restaurant by name.
     name = input("Enter the restaurant's name: ")
     restaurant = Restaurant.find_by_name(name)
     print(restaurant) if restaurant else print(f"Restaurant '{name}' not found.")
 
 
-def find_restaurant_by_id():
+def find_restaurant_by_id():   #Finds a restaurant by its ID.
     id_ = input("Enter the restaurant's ID: ")
     restaurant = Restaurant.find_by_id(id_)
     print(restaurant) if restaurant else print(f"Restaurant with ID {id_} not found.")
 
 
-def create_restaurant():
+def create_restaurant():   #Creates a new restaurant entry with user-provided details.
     name = input("Enter the restaurant name: ")
     address = input("Enter the restaurant address: ")
     rating = input("Enter the restaurant rating: ")
@@ -42,7 +42,7 @@ def create_restaurant():
         print(f"Error creating a restaurant: {e}")
 
 
-def update_restaurant():
+def update_restaurant():   #Updates details of an existing restaurant.
     id_ = input("Enter the restaurant's ID: ")
     restaurant = Restaurant.find_by_id(id_)
     if restaurant:
@@ -62,7 +62,7 @@ def update_restaurant():
         print(f"Restaurant with ID {id_} not found.")
 
 
-def delete_restaurant():
+def delete_restaurant():   #Deletes a restaurant by ID.
     id_ = input("Enter the restaurant's ID: ")
     restaurant = Restaurant.find_by_id(id_)
     if restaurant:
@@ -76,7 +76,8 @@ def delete_restaurant():
 
 
 # Customer functions
-def list_customers():
+def list_customers():  #Lists all customers in the database.
+    name = input("Enter customer name: ")
     customers = Customer.get_all()
     if not customers:
         print("No customers found.")
@@ -85,19 +86,19 @@ def list_customers():
             print(customer)
 
 
-def find_customer_by_name():
+def find_customer_by_name(): #Finds a customer by name.
     name = input("Enter customer name: ")
     customer = Customer.find_by_name(name)
     print(customer) if customer else print(f"Customer '{name}' not found.")
 
 
-def find_customer_by_id():
+def find_customer_by_id():  #Finds a customer by their ID.
     id_ = input("Enter the customer's ID: ")
     customer = Customer.find_by_id(id_)
     print(customer) if customer else print(f"Customer with ID {id_} not found.")
 
 
-def create_customer():
+def create_customer():  #Creates a new customer entry with user-provided details.
     name = input("Enter the customer's name: ")
     body = input("Enter the customer's details: ")
     try:
@@ -107,7 +108,7 @@ def create_customer():
         print("Error creating customer:", e)
 
 
-def update_customer():
+def update_customer():  #Updates details of an existing customer.
     id_ = input("Enter the customer's ID: ")
     customer = Customer.find_by_id(id_)
     if customer:
@@ -125,7 +126,7 @@ def update_customer():
         print(f"Customer with ID {id_} not found.")
 
 
-def delete_customer():
+def delete_customer():  #Deletes a customer by ID.
     id_ = input("Enter the customer's ID: ")
     customer = Customer.find_by_id(id_)
     if customer:
@@ -138,25 +139,7 @@ def delete_customer():
         print(f"Customer with ID {id_} not found.")
 
 
-# Review functions
-# def list_reviews():
-#     """Fetch and display all reviews."""
-#     reviews = Review.get_all()  
-#     for review in reviews:
-#         print(review)
-        
-
-# def list_reviews():
-#     reviews = Review.get_all()
-#     if not reviews:
-#         print("No reviews found.")
-#     else:
-#         for review in reviews:
-#             print(review)
-
-
-
-def list_reviews():
+def list_reviews():  #Lists all reviews in the database.
     reviews = Review.get_all()
     if not reviews:
         print("No reviews found.")
@@ -166,13 +149,13 @@ def list_reviews():
         
 
 
-def find_review_by_id():
+def find_review_by_id():               #Finds a review by its ID.
     id_ = input("Enter the review's ID: ")
     review = Review.find_by_id(id_)
     print(review) if review else print(f"Review with ID {id_} not found.")
 
 
-def create_review():
+def create_review(): #"Lists all reviews in the database.
     username = input("Enter the username: ")
     comment = input("Enter the comment: ")
     restaurant_id = int(input("Enter the restaurant ID: "))
@@ -184,7 +167,7 @@ def create_review():
         print("Error creating review:", e)
 
 
-def update_review():
+def update_review():    #Updates details of an existing review.                  
     id_ = input("Enter the review's ID: ")
     review = Review.find_by_id(id_)
     print(review)
@@ -210,7 +193,7 @@ def update_review():
         
 
 
-def delete_review():
+def delete_review():#Deletes a review by ID.
     id_ = input("Enter the review's ID: ")
     review = Review.find_by_id(id_)
     if review:
