@@ -175,11 +175,11 @@ def find_review_by_id():
 def create_review():
     username = input("Enter the username: ")
     comment = input("Enter the comment: ")
-    restaurant_id = input("Enter the restaurant ID: ")
-    customer_id = input("Enter the customer ID: ")
+    restaurant_id = int(input("Enter the restaurant ID: "))
+    customer_id = int(input("Enter the customer ID: "))
     try:
         new_review = Review.create(username=username, comment=comment, restaurant_id=restaurant_id, customer_id=customer_id)
-        print(f"Review created with ID {new_review.id}.")
+        print(f"Review created with ID {new_review.review_id}.")
     except Exception as e:
         print("Error creating review:", e)
 
@@ -187,23 +187,27 @@ def create_review():
 def update_review():
     id_ = input("Enter the review's ID: ")
     review = Review.find_by_id(id_)
+    print(review)
     if review:
         try:
             username = input("Enter the new username: ")
             comment = input("Enter the new comment: ")
-            restaurant_id = input("Enter the new restaurant ID: ")
-            customer_id = input("Enter the new customer ID: ")
+            restaurant_id = int(input("Enter the new restaurant ID: "))
+            customer_id = int(input("Enter the new customer ID: "))
 
             review.username = username
             review.comment = comment
             review.restaurant_id = restaurant_id
             review.customer_id = customer_id
+            print(review.username, review.comment,review.restaurant_id,review.customer_id)
             review.update()
             print(f"Updated review: {review}")
         except Exception as e:
             print("Error updating review:", e)
     else:
         print(f"Review with ID {id_} not found.")
+        
+        
 
 
 def delete_review():

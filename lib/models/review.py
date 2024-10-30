@@ -3,7 +3,7 @@ from models.restaurant import Restaurant
 from models.customer import Customer
 # from datetime import datetime
 
-
+id
 class Review:
     all = {}
 
@@ -121,50 +121,48 @@ class Review:
         self.review_id = CURSOR.lastrowid 
         type(self).all[self.review_id] = self
 
-    # @classmethod
-    # def create(cls, username, comment, restaurant_id, customer_id):
-    #     review = cls(review_id=None, username=username, restaurant_id=restaurant_id, customer_id=customer_id, comment=comment, created_at=None)  
-    #     review.save()
-    #     return review
-    
-    
-    
-
-    
     @classmethod
     def create(cls, username, comment, restaurant_id, customer_id):
-        # Verify foreign key references (assuming restaurant_id and customer_id are correct)
-        restaurant_exists = CURSOR.execute(
-            "SELECT 1 FROM restaurants WHERE restaurant_id = ?", (restaurant_id,)
-        ).fetchone()
-        
-        if not restaurant_exists:
-            raise ValueError("Error creating review: restaurant_id must reference a restaurant in the database.")
-        
-        customer_exists = CURSOR.execute(
-            "SELECT 1 FROM customers WHERE customer_id = ?", (customer_id,)
-        ).fetchone()
-        
-        if not customer_exists:
-            raise ValueError("Error creating review: customer_id must reference a customer in the database.")
-        
-        # Insert the review
-        sql = """
-            INSERT INTO reviews (username, comment, restaurant_id, customer_id, created_at)
-            VALUES (?, ?, ?, ?, datetime('now'))
-        """
-        CURSOR.execute(sql, (username, comment, restaurant_id, customer_id))
-        CONN.commit()
-        
-        # Fetch the last inserted row
-        review_id = CURSOR.lastrowid
-        return cls.find_by_id(review_id)
-    
+        review = cls(review_id=None, username=username, restaurant_id=restaurant_id, customer_id=customer_id, comment=comment, created_at=None)  
+        review.save()
+        return review
     
     
     
 
-
+    
+    # @classmethod
+    # def create(cls, username, comment, restaurant_id, customer_id):
+    #     # Verify foreign key references (assuming restaurant_id and customer_id are correct)
+    #     restaurant_exists = CURSOR.execute(
+    #         "SELECT 1 FROM restaurants WHERE restaurant_id = ?", (restaurant_id,)
+    #     ).fetchone()
+        
+    #     if not restaurant_exists:
+    #         raise ValueError("Error creating review: restaurant_id must reference a restaurant in the database.")
+        
+    #     customer_exists = CURSOR.execute(
+    #         "SELECT 1 FROM customers WHERE customer_id = ?", (customer_id,)
+    #     ).fetchone()
+        
+    #     if not customer_exists:
+    #         raise ValueError("Error creating review: customer_id must reference a customer in the database.")
+        
+    #     # Insert the review
+    #     sql = """
+    #         INSERT INTO reviews (username, comment, restaurant_id, customer_id, created_at)
+    #         VALUES (?, ?, ?, ?, datetime('now'))
+    #     """
+    #     CURSOR.execute(sql, (username, comment, restaurant_id, customer_id))
+    #     CONN.commit()
+        
+    #     # Fetch the last inserted row
+    #     review_id = CURSOR.lastrowid
+    #     return cls.find_by_id(review_id)
+    
+  
+    
+    
     
 
     # def update(self):
@@ -174,24 +172,19 @@ class Review:
 
 
     def update(self):
-        """Update the table row corresponding to the current Employee instance."""
+        """Update the table row corresponding to the current Review instance."""
         sql = """
-            UPDATE employees
-            SET username = ?, comment = ?, restaurant_id = ?,customer_id = ?
-            WHERE id = ?
+            UPDATE reviews
+            SET username =?, comment =?, restaurant_id =?, customer_id =?
+            WHERE id= ?
+            
         """
-        CURSOR.execute(sql, (self.username, self.comment, self.restaurant_id, self.customer_id, self.review_id))
+        CURSOR.execute(sql, (self.username, self.comment, self.restaurant_id, self.customer_id,self.review_id))
         CONN.commit()
 
 
 
-    # def delete(self):
-    #     sql = "DELETE FROM reviews WHERE id = ?"
-    #     CURSOR.execute(sql, (self.review_id,))
-    #     CONN.commit()
-    #     Review.review.remove(self)  
-    #     self.review_id = None
-    
+# UPDATE reviews(COLUMN 1, COL2) VALUES(?,?.?) WHERE id = ?
     
     
     def delete(self):
@@ -203,46 +196,30 @@ class Review:
 
 
 
-    # def delete(self):
-    #     """Delete the table row corresponding to the current Review instance,
-    #     delete the dictionary entry, and reassign id attribute"""
-
-    #     sql = """
-    #         DELETE FROM reviews
-    #         WHERE review_id = ?
-    #     """
-
-    #     CURSOR.execute(sql, (self.review_id,))
-    #     CONN.commit()
-
-    #     # Delete the dictionary entry using id as the key
-    #     del type(self).all[self.id]
-
-    #     # Set the id to None
-    #     self.id = None
 
 
+    # @classmethod
+    # def instance_from_db(cls, row):
+    #     """Return a Review object having the attribute values from the table row."""
+        
+    #     # Unpack row and check if instance already exists in `all` dictionary
+    #     review_id, username, comment, created_at, restaurant_id, customer_id = row
+    #     review = cls.all.get(review_id)
+        
+    #     if review:
+    #         # Update any modified attributes if instance already exists
+    #         review.username = username
+    #         review.comment = comment
+    #         review.created_at = created_at
+    #         review.restaurant_id = restaurant_id
+    #         review.customer_id = customer_id
+    #     else:
+    #         # Create a new instance if it doesn't exist in `all`
+    #         review = cls(review_id, username, comment, created_at, restaurant_id, customer_id)
+    #         cls.all[review_id] = review
 
-
-
+    #     return review
     @classmethod
     def instance_from_db(cls, row):
-        """Return a Review object having the attribute values from the table row."""
-        
-        # Unpack row and check if instance already exists in `all` dictionary
         review_id, username, comment, created_at, restaurant_id, customer_id = row
-        review = cls.all.get(review_id)
-        
-        if review:
-            # Update any modified attributes if instance already exists
-            review.username = username
-            review.comment = comment
-            review.created_at = created_at
-            review.restaurant_id = restaurant_id
-            review.customer_id = customer_id
-        else:
-            # Create a new instance if it doesn't exist in `all`
-            review = cls(review_id, username, comment, created_at, restaurant_id, customer_id)
-            cls.all[review_id] = review
-
-        return review
+        return cls(review_id=review_id, username=username, comment=comment, created_at=created_at, restaurant_id=restaurant_id, customer_id=customer_id)
