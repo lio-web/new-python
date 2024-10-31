@@ -32,8 +32,6 @@ def reset_database():
     Review.create(username="keith_s", comment="Breathtaking views and delicious food!", restaurant_id=mountain_delight.id, customer_id=keith.id)
     Review.create(username="lio_m", comment="Great vibe, but food was average.", restaurant_id=urban_eats.id, customer_id=Lio.id)
 
-# Run the reset_database function to initialize the database with seed data
-reset_database()
 
-# Open an interactive debugger at this point
+reset_database()
 ipdb.set_trace()
