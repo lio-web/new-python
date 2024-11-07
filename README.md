@@ -12,7 +12,7 @@ SQLite3
     git clone https://github.com/lio-web/new-python
     cd new-python
 
-    ```
+   ```
 
 ## Generating Your Environment
 
@@ -38,16 +38,16 @@ pipenv shell
 | `delete()`        | Deletes the database entry for the `Customer` instance. |
 
 ### Restaurant Model
-|Method |           | Description|               
+|Method             | Description |               
 |-------------------|-------------|
-|`create_table()`	  |Creates the restaurants table.|
-|`drop_table()`	  |Drops the restaurants table.|
-|`get_all()`	     |Returns a list of all Restaurant records.|
-|`find_by_id()`	  |Returns a Restaurant object by its ID.|
-|`find_by_name()`	  |Returns a Restaurant object by its name.|
-|`save()	`          |Saves a new restaurant to the database and updates its id.|
-|`update()`	        |Updates the database entry for the Restaurant instance.|
-|`delete()`	        |Deletes the database entry for the Restaurant instance.|
+|`create_table()`	  |Creates the restaurants table. |
+|`drop_table()`	  |Drops the restaurants table. |
+|`get_all()`	     |Returns a list of all Restaurant records. |
+|`find_by_id()`	  |Returns a Restaurant object by its ID. |
+|`find_by_name()`	  |Returns a Restaurant object by its name. |
+|`save()`           |Saves a new restaurant to the database and updates its `id`. |
+|`update()` 	     |Updates the database entry for the Restaurant instance. |
+|`delete()`         |Deletes the database entry for the Restaurant instance. |
 
 ### Review Model
 | Method           | Description |
