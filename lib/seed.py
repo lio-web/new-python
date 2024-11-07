@@ -29,7 +29,6 @@ def seed_database():
     keith.save()
     lio.save()
     
-    print("Database seeded with initial data!")
     
     # Sample Reviews
     Review.create(username="alice_j", comment="Amazing pizza and great ambiance!", restaurant_id=pizza_inn.id, customer_id=alice.id)

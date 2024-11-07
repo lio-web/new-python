@@ -23,7 +23,6 @@ from helpers import (
 )
 
 def main():
-    # reset_database()  # Reset and seed the database at the start
     while True:
         menu()
         choice = input("> ")
