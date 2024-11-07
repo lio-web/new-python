@@ -13,11 +13,7 @@ SQLite3
     cd new-python
 
     ```
-2.Install dependencies:
- Install the required dependencies:
-    ```txt
-    pip install -r requirements.txt
-   ```
+
 ## Generating Your Environment
 
 Install any additional dependencies you know you'll need by
@@ -44,12 +40,12 @@ pipenv shell
 ### Restaurant Model
 |Method |           | Description|               
 |-------------------|-------------|
-|`create_table()`	|Creates the restaurants table.|
-|`drop_table()`	    |Drops the restaurants table.|
-|`get_all()`	    |Returns a list of all Restaurant records.|
-|`find_by_id()`	    |Returns a Restaurant object by its ID.|
-|`find_by_name()`	|Returns a Restaurant object by its name.|
-|`save()	`       |Saves a new restaurant to the database and updates its id.|
+|`create_table()`	  |Creates the restaurants table.|
+|`drop_table()`	  |Drops the restaurants table.|
+|`get_all()`	     |Returns a list of all Restaurant records.|
+|`find_by_id()`	  |Returns a Restaurant object by its ID.|
+|`find_by_name()`	  |Returns a Restaurant object by its name.|
+|`save()	`          |Saves a new restaurant to the database and updates its id.|
 |`update()`	        |Updates the database entry for the Restaurant instance.|
 |`delete()`	        |Deletes the database entry for the Restaurant instance.|
 
@@ -66,7 +62,7 @@ pipenv shell
 
 
 # Usage Examples
-Here’s how to use the Customer, Restaurant, and Review models with the seeded data.
+Here’s how to use the Customer, Restaurant, and Review models with the data.
 
 Customer Model
 ```py
